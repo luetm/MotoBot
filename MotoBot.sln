@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoBot", "MotoBot\MotoBot.csproj", "{AC62BBA1-DC53-4DE5-8938-7FB8CB9D1B8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoBotCore", "MotoBotCore\MotoBotCore.csproj", "{0BFF9716-E523-49F5-8FAD-A5D135AB9C71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{13E83AD0-5AB4-4100-AEDF-EAF80BD4E228}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{AC62BBA1-DC53-4DE5-8938-7FB8CB9D1B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC62BBA1-DC53-4DE5-8938-7FB8CB9D1B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC62BBA1-DC53-4DE5-8938-7FB8CB9D1B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BFF9716-E523-49F5-8FAD-A5D135AB9C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BFF9716-E523-49F5-8FAD-A5D135AB9C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BFF9716-E523-49F5-8FAD-A5D135AB9C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BFF9716-E523-49F5-8FAD-A5D135AB9C71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E83AD0-5AB4-4100-AEDF-EAF80BD4E228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E83AD0-5AB4-4100-AEDF-EAF80BD4E228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E83AD0-5AB4-4100-AEDF-EAF80BD4E228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E83AD0-5AB4-4100-AEDF-EAF80BD4E228}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
