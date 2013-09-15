@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Text;
 using System.Text.RegularExpressions;
+using MotoBotCore;
 using MotoBotCore.Classes;
 using MotoBotCore.Enums;
 using MotoBotCore.Interfaces;
@@ -22,7 +23,7 @@ namespace MotoBotCore.Queries
 
 
         [Import]
-        public IFileReader FileReader { get; set; }
+        public IInformationRepository InformationRepository { get; set; }
 
 
         // Query regex
@@ -60,7 +61,7 @@ namespace MotoBotCore.Queries
             if (!CanExecute(cmd))
                 throw new InvalidOperationException("You cannot execute the query with this command. Check CanExecute() first.");
 
-            var helpText = FileReader.ReadAll("help.txt", Encoding.UTF8);
+            var helpText = InformationRepository.ReadAllFromFile("help.txt", Encoding.UTF8);
             context.Bot.MessageUser(context.User, helpText);
         }
     }

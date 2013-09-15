@@ -6,11 +6,15 @@ namespace MotoBotCore.Classes
     {
         public IBot Bot { get; private set; }
         public IUser User { get; private set; }
-
-        public QueryContext(IBot bot, IUser user)
+        public IChannel Channel { get; private set; }
+        public bool IsPrivateMessage { get; private set; }
+        
+        public QueryContext(IBot bot, IUser user, IChannel channel, bool isPrivateMessage)
         {
             Bot = bot;
             User = user;
+            Channel = channel;
+            IsPrivateMessage = isPrivateMessage;
         }
     }
 }

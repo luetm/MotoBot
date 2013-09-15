@@ -16,10 +16,10 @@ namespace UnitTests.Queries
         public void Ctor_Called_PropertieSetUp()
         {
             // * Arrange
-            var fh = new Mock<IFileReader>(MockBehavior.Loose);
+            var fh = new Mock<IInformationRepository>(MockBehavior.Loose);
 
             // * Act
-            var q = new HelpQuery { FileReader = fh.Object };
+            var q = new HelpQuery { InformationRepository = fh.Object };
 
             // * Assert
             Assert.That(!String.IsNullOrWhiteSpace(q.Description));
@@ -30,10 +30,10 @@ namespace UnitTests.Queries
         public void CanExecute_ValidCall_True()
         {
             // * Arrange
-            var fh = new Mock<IFileReader>(MockBehavior.Loose);
+            var fh = new Mock<IInformationRepository>(MockBehavior.Loose);
             
             // * Act
-            var q = new HelpQuery { FileReader = fh.Object };
+            var q = new HelpQuery { InformationRepository = fh.Object };
             var canExecute = q.CanExecute("help");
 
             // * Assert
@@ -44,10 +44,10 @@ namespace UnitTests.Queries
         public void CanExecute_InvalidCall_False()
         {
             // * Arrange
-            var fh = new Mock<IFileReader>(MockBehavior.Loose);
+            var fh = new Mock<IInformationRepository>(MockBehavior.Loose);
 
             // * Act
-            var q = new HelpQuery { FileReader = fh.Object };
+            var q = new HelpQuery { InformationRepository = fh.Object };
             var canExecute = q.CanExecute("foobar");
 
             // * Assert
@@ -58,15 +58,16 @@ namespace UnitTests.Queries
         public void Execute_ValidCall_MessagesUser()
         {
             // * Arrange
-            var fh = new Mock<IFileReader>(MockBehavior.Loose);
-            fh.Setup(x => x.ReadAll("help.txt", It.IsAny<Encoding>())).Returns("Test");
+            var fh = new Mock<IInformationRepository>(MockBehavior.Loose);
+            fh.Setup(x => x.ReadAllFromFile("help.txt", It.IsAny<Encoding>())).Returns("Test");
 
             var bot = new Mock<IBot>();
             var user = new Mock<IUser>();
-            var context = new QueryContext(bot.Object, user.Object);
+            var channel = new Mock<IChannel>();
+            var context = new QueryContext(bot.Object, user.Object, channel.Object, false);
 
             // * Act
-            var q = new HelpQuery { FileReader = fh.Object };
+            var q = new HelpQuery { InformationRepository = fh.Object };
             q.Execute("help", context);
 
             // * Assert
@@ -77,15 +78,16 @@ namespace UnitTests.Queries
         public void Execute_InvalidCall_Throws()
         {
             // * Arrange
-            var fh = new Mock<IFileReader>(MockBehavior.Loose);
-            fh.Setup(x => x.ReadAll("help.txt", It.IsAny<Encoding>())).Returns("Test");
+            var fh = new Mock<IInformationRepository>(MockBehavior.Loose);
+            fh.Setup(x => x.ReadAllFromFile("help.txt", It.IsAny<Encoding>())).Returns("Test");
 
             var bot = new Mock<IBot>();
             var user = new Mock<IUser>();
-            var context = new QueryContext(bot.Object, user.Object);
+            var channel = new Mock<IChannel>();
+            var context = new QueryContext(bot.Object, user.Object, channel.Object, false);
 
             // * Act
-            var q = new HelpQuery { FileReader = fh.Object };
+            var q = new HelpQuery { InformationRepository = fh.Object };
             q.Execute("foobar", context);
         }
     }

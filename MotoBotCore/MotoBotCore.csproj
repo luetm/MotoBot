@@ -33,8 +33,8 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="IrcBot">
-      <HintPath>..\..\..\..\Dev\C#\F1Bot\IrcBot\bin\Debug\IrcBot.dll</HintPath>
+    <Reference Include="IrcDotNet">
+      <HintPath>..\packages\IrcDotNet.0.4.1\lib\net40\IrcDotNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -47,17 +47,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IFileReader.cs" />
+    <Compile Include="Classes\ErrorEventArgs.cs" />
+    <Compile Include="Classes\MessageEventArgs.cs" />
+    <Compile Include="Classes\SystemMessageEventArgs.cs" />
+    <Compile Include="Data\GrandPrix.cs" />
+    <Compile Include="Data\Session.cs" />
+    <Compile Include="Enums\Series.cs" />
+    <Compile Include="Interfaces\IChannel.cs" />
+    <Compile Include="Interfaces\IInformationRepository.cs" />
     <Compile Include="Classes\QueryContext.cs" />
     <Compile Include="Enums\QueryPrivilegeLevel.cs" />
     <Compile Include="Enums\UserMode.cs" />
     <Compile Include="Interfaces\IBot.cs" />
+    <Compile Include="Interfaces\INetwork.cs" />
     <Compile Include="Interfaces\IQuery.cs" />
     <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Irc\Bot.cs" />
+    <Compile Include="Irc\Channel.cs" />
+    <Compile Include="Irc\Network.cs" />
+    <Compile Include="Irc\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\F1NextQuery.cs" />
     <Compile Include="Queries\HelpQuery.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
