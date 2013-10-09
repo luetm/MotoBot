@@ -10,5 +10,6 @@ namespace MotoBotCore.Data
     {
         public int Number { get; set; }
         public string Name { get; set; }
+        public List<Session> Sessions { get; set; }
     }
 }

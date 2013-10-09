@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BotManager.cs" />
     <Compile Include="Classes\ErrorEventArgs.cs" />
     <Compile Include="Classes\MessageEventArgs.cs" />
     <Compile Include="Classes\SystemMessageEventArgs.cs" />
+    <Compile Include="Data\DefaultInformationRepository.cs" />
     <Compile Include="Data\GrandPrix.cs" />
     <Compile Include="Data\Session.cs" />
     <Compile Include="Enums\Series.cs" />

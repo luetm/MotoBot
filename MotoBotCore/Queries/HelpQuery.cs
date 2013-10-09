@@ -9,6 +9,8 @@ using MotoBotCore.Interfaces;
 
 namespace MotoBotCore.Queries
 {
+    [Export(typeof(IQuery))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class HelpQuery : IQuery
     {
         /// <summary>

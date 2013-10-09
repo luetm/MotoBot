@@ -131,7 +131,10 @@ namespace MotoBotCore.Irc
                 throw new InvalidOperationException("User {0} not found.".F(user.Name));
 
             // Message
-            Client.LocalUser.SendMessage(ircUser.User, text);
+            foreach (var line in text.Split(new [] {'\n'}, StringSplitOptions.RemoveEmptyEntries))
+            {
+                Client.LocalUser.SendMessage(ircUser.User, line);
+            }
         }
 
         /// <summary>

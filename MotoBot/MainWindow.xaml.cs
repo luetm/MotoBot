@@ -9,7 +9,8 @@ namespace MotoBot
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Bot _bot;
+        private BotManager _botManager;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -18,13 +19,21 @@ namespace MotoBot
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            _bot = new Bot();
-            _bot.SystemMessageReceived += (s, e2) =>
+            var network = new Network
+            {
+                Address = "irc.quakenet.org",
+                Name = "Quakenet",
+                Nickname = "MotoBot",
+                NicknameAlt = "MotoBot_",
+                Port = 6667,
+            };
+            _botManager = new BotManager(network);
+            _botManager.Bot.SystemMessageReceived += (s, e2) =>
             {
                 StatusBox.Dispatcher.Invoke(() => StatusBox.Text += e2.Message + "\n");
             };
 
-            _bot.MessageReceived += (s, e3) =>
+            _botManager.Bot.MessageReceived += (s, e3) =>
             {
                 if (e3.QueryContext.IsPrivateMessage)
                 {
@@ -38,24 +47,17 @@ namespace MotoBot
                 }
             };
 
-            var network = new Network
-            {
-                Address = "irc.quakenet.org",
-                Name = "Quakenet",
-                Nickname = "MotoBot",
-                NicknameAlt = "MotoBot_",
-                Port = 6667,
-            };
-            _bot.Connect(network);
-            _bot.Connected += (s, e1) =>
+            _botManager.Bot.Connected += (s, e1) =>
             {
                 JoinButton.Dispatcher.Invoke(() => JoinButton.IsEnabled = true);
             };
+
+            _botManager.Start();
         }
 
         private void JoinButton_Click(object sender, RoutedEventArgs e)
         {
-            _bot.Join(ChannelBox.Text);
+            _botManager.Bot.Join(ChannelBox.Text);
         }
     }
 }

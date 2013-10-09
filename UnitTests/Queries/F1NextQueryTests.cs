@@ -66,7 +66,7 @@ namespace UnitTests.Queries
                     new Session
                     {
                         DateTimeUtc = DateTime.UtcNow.AddDays(1).AddHours(2).AddMinutes(3).AddSeconds(4),
-                        SessionName = "R",
+                        Name = "R",
                         GrandPrix = new GrandPrix { Name = "Fantasy GP of Utopia", Number = 0 }
                     });
 
@@ -95,7 +95,7 @@ namespace UnitTests.Queries
                     new Session
                     {
                         DateTimeUtc = DateTime.UtcNow.AddMinutes(1).AddSeconds(2),
-                        SessionName = "R",
+                        Name = "R",
                         GrandPrix = new GrandPrix { Name = "Fantasy GP of Utopia", Number = 0 }
                     });
 
@@ -124,7 +124,7 @@ namespace UnitTests.Queries
                     new Session
                     {
                         DateTimeUtc = DateTime.UtcNow.AddDays(1),
-                        SessionName = "R",
+                        Name = "R",
                         GrandPrix = new GrandPrix { Name = "Fantasy GP of Utopia", Number = 0 }
                     });
 
