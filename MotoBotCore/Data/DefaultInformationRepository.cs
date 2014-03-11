@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Globalization;
+using MotoBotCore.Interfaces;
+using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using MotoBotCore.Enums;
-using MotoBotCore.Interfaces;
 
 namespace MotoBotCore.Data
 {
@@ -93,10 +91,10 @@ namespace MotoBotCore.Data
                 {
                     Name = gp.Attribute("Name").Value,
                     Sessions = gp.Descendants()
-                        .Select(s => new Session()
+                        .Select(s => new Session
                         {
                             Name = s.Attribute("Name").Value,
-                            DateTimeUtc = new DateTime(DateTime.Parse(s.Attribute("Date").Value).Ticks),
+                            DateTimeUtc = new DateTime(DateTime.Parse(s.Attribute("Date").Value, new CultureInfo("en-GB")).Ticks),
                         }).ToList(),
                     Number = i++,
                 }).ToList();

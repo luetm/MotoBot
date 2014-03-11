@@ -1,0 +1,6 @@
+F1Bot Help
+==========
+
+[Commands]
+!f1next     : Displays the next grand prix session and the time countdown
+!help       : Displays this message

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GrandPrixs>
+  <GrandPrix Name="Australian Grand Prix in Melbourne">
+    <Session Name="First Practice Session" Date="16/03/2014 01:30:00" />
+    <Session Name="Second Practice Session" Date="16/03/2014 05:30:00" />
+    <Session Name="Third Practice Session" Date="17/03/2014 03:00:00" />
+    <Session Name="Qualifying Session" Date="17/03/2014 06:00:00" />
+    <Session Name="Qualifying Session #2" Date="17/03/2014 00:00:00" />
+    <Session Name="Race" Date="18/03/2014 06:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Malaysian Grand Prix in Kuala Lumpur">
+    <Session Name="First Practice Session" Date="22/03/2014 02:00:00" />
+    <Session Name="Second Practice Session" Date="22/03/2014 06:00:00" />
+    <Session Name="Third Practice Session" Date="23/03/2014 05:00:00" />
+    <Session Name="Qualifying Session" Date="23/03/2014 08:00:00" />
+    <Session Name="Race" Date="24/03/2014 08:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Chinese Grand Prix in Shanghai">
+    <Session Name="First Practice Session" Date="12/04/2014 02:00:00" />
+    <Session Name="Second Practice Session" Date="12/04/2014 06:00:00" />
+    <Session Name="Third Practice Session" Date="13/04/2014 03:00:00" />
+    <Session Name="Qualifying Session" Date="13/04/2014 06:00:00" />
+    <Session Name="Race" Date="14/04/2014 07:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Bahrain Grand Prix in Sakhir">
+    <Session Name="First Practice Session" Date="19/04/2014 07:00:00" />
+    <Session Name="Second Practice Session" Date="19/04/2014 11:00:00" />
+    <Session Name="Third Practice Session" Date="20/04/2014 08:00:00" />
+    <Session Name="Qualifying Session" Date="20/04/2014 11:00:00" />
+    <Session Name="Race" Date="21/04/2014 12:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Spanish Grand Prix in Catalunya">
+    <Session Name="First Practice Session" Date="10/05/2014 09:00:00" />
+    <Session Name="Second Practice Session" Date="10/05/2014 13:00:00" />
+    <Session Name="Third Practice Session" Date="11/05/2014 10:00:00" />
+    <Session Name="Qualifying Session" Date="11/05/2014 13:00:00" />
+    <Session Name="Race" Date="12/05/2014 13:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Monaco Grand Prix in Monte Carlo">
+    <Session Name="First Practice Session" Date="23/05/2014 08:00:00" />
+    <Session Name="Second Practice Session" Date="23/05/2014 12:00:00" />
+    <Session Name="Third Practice Session" Date="25/05/2014 09:00:00" />
+    <Session Name="Qualifying Session" Date="25/05/2014 12:00:00" />
+    <Session Name="Race" Date="26/05/2014 12:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Canadian Grand Prix in Montreal">
+    <Session Name="First Practice Session" Date="07/06/2014 15:00:00" />
+    <Session Name="Second Practice Session" Date="07/06/2014 19:00:00" />
+    <Session Name="Third Practice Session" Date="08/06/2014 15:00:00" />
+    <Session Name="Qualifying Session" Date="08/06/2014 18:00:00" />
+    <Session Name="Race" Date="09/06/2014 19:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="British Grand Prix in Silverstone, England">
+    <Session Name="First Practice Session" Date="28/06/2014 09:00:00" />
+    <Session Name="Second Practice Session" Date="28/06/2014 13:00:00" />
+    <Session Name="Third Practice Session" Date="29/06/2014 09:00:00" />
+    <Session Name="Qualifying Session" Date="29/06/2014 12:00:00" />
+    <Session Name="Race" Date="30/06/2014 12:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="German Grand Prix in Nurburgring">
+    <Session Name="First Practice Session" Date="05/07/2014 08:00:00" />
+    <Session Name="Second Practice Session" Date="05/07/2014 12:00:00" />
+    <Session Name="Third Practice Session" Date="06/07/2014 09:00:00" />
+    <Session Name="Qualifying Session" Date="06/07/2014 12:00:00" />
+    <Session Name="Race" Date="07/07/2014 12:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Hungarian Grand Prix in Budapest">
+    <Session Name="First Practice Session" Date="26/07/2014 08:00:00" />
+    <Session Name="Second Practice Session" Date="26/07/2014 12:00:00" />
+    <Session Name="Third Practice Session" Date="27/07/2014 09:00:00" />
+    <Session Name="Qualifying Session" Date="27/07/2014 12:00:00" />
+    <Session Name="Race" Date="28/07/2014 12:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Belgian Grand Prix in Spa-Francorchamps">
+    <Session Name="First Practice Session" Date="23/08/2014 08:00:00" />
+    <Session Name="Second Practice Session" Date="23/08/2014 12:00:00" />
+    <Session Name="Third Practice Session" Date="24/08/2014 09:00:00" />
+    <Session Name="Qualifying Session" Date="24/08/2014 12:00:00" />
+    <Session Name="Race" Date="25/08/2014 12:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Italian Grand Prix in Monza">
+    <Session Name="First Practice Session" Date="06/09/2014 08:00:00" />
+    <Session Name="Second Practice Session" Date="06/09/2014 12:00:00" />
+    <Session Name="Third Practice Session" Date="07/09/2014 09:00:00" />
+    <Session Name="Qualifying Session" Date="07/09/2014 12:00:00" />
+    <Session Name="Race" Date="08/09/2014 12:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Singapore Grand Prix in Singapore">
+    <Session Name="First Practice Session" Date="20/09/2014 10:00:00" />
+    <Session Name="Second Practice Session" Date="20/09/2014 13:30:00" />
+    <Session Name="Third Practice Session" Date="21/09/2014 09:00:00" />
+    <Session Name="Qualifying Session" Date="21/09/2014 12:00:00" />
+    <Session Name="Race" Date="22/09/2014 12:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Korean Grand Prix in Yeongam">
+    <Session Name="First Practice Session" Date="04/10/2014 01:00:00" />
+    <Session Name="Second Practice Session" Date="04/10/2014 05:00:00" />
+    <Session Name="Third Practice Session" Date="05/10/2014 02:00:00" />
+    <Session Name="Qualifying Session" Date="05/10/2014 05:00:00" />
+    <Session Name="Race" Date="06/10/2014 06:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Japanese Grand Prix in Suzuka">
+    <Session Name="First Practice Session" Date="11/10/2014 01:00:00" />
+    <Session Name="Second Practice Session" Date="11/10/2014 05:00:00" />
+    <Session Name="Third Practice Session" Date="12/10/2014 02:00:00" />
+    <Session Name="Qualifying Session" Date="12/10/2014 05:00:00" />
+    <Session Name="Race" Date="13/10/2014 06:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Indian Grand Prix in New Delhi">
+    <Session Name="First Practice Session" Date="25/10/2014 04:30:00" />
+    <Session Name="Second Practice Session" Date="25/10/2014 08:30:00" />
+    <Session Name="Third Practice Session" Date="26/10/2014 05:30:00" />
+    <Session Name="Qualifying Session" Date="26/10/2014 08:30:00" />
+    <Session Name="Race" Date="27/10/2014 09:30:00" />
+  </GrandPrix>
+  <GrandPrix Name="Abu Dhabi Grand Prix in Yas Marina">
+    <Session Name="First Practice Session" Date="01/11/2014 09:00:00" />
+    <Session Name="Second Practice Session" Date="01/11/2014 13:00:00" />
+    <Session Name="Third Practice Session" Date="02/11/2014 10:00:00" />
+    <Session Name="Qualifying Session" Date="02/11/2014 13:00:00" />
+    <Session Name="Race" Date="03/11/2014 13:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="United States Grand Prix in Austin">
+    <Session Name="First Practice Session" Date="15/11/2014 16:00:00" />
+    <Session Name="Second Practice Session" Date="15/11/2014 20:00:00" />
+    <Session Name="Third Practice Session" Date="16/11/2014 16:00:00" />
+    <Session Name="Qualifying Session" Date="16/11/2014 19:00:00" />
+    <Session Name="Race" Date="17/11/2014 19:00:00" />
+  </GrandPrix>
+  <GrandPrix Name="Brazilian Grand Prix in Sao Paulo">
+    <Session Name="First Practice Session" Date="22/11/2014 12:00:00" />
+    <Session Name="Second Practice Session" Date="22/11/2014 16:00:00" />
+    <Session Name="Third Practice Session" Date="23/11/2014 13:00:00" />
+    <Session Name="Qualifying Session" Date="23/11/2014 16:00:00" />
+    <Session Name="Race" Date="24/11/2014 16:00:00" />
+  </GrandPrix>
+</GrandPrixs>

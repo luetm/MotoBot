@@ -9,6 +9,7 @@ using MotoBotCore;
 using MotoBotCore.Classes;
 using MotoBotCore.Data;
 using MotoBotCore.Enums;
+using MotoBotCore.Helpers;
 using MotoBotCore.Interfaces;
 
 namespace F1Plugin.Calendar
@@ -64,24 +65,30 @@ namespace F1Plugin.Calendar
         /// <param name="context"></param>
         public void Execute(string cmd, QueryContext context)
         {
-            File.WriteAllText("test.log", Directory.GetCurrentDirectory(), Encoding.UTF8);
-            if (!CanExecute(cmd))
-                throw new InvalidOperationException("You cannot execute the query with this command. Check CanExecute() first.");
-
-            if (cmd == "f1next")
+            try
             {
-                var next = InformationRepository.GetNextSession(Series.Formula1);
-                var now = DateTime.UtcNow;
+                if (!CanExecute(cmd))
+                    throw new InvalidOperationException("You cannot execute the query with this command. Check CanExecute() first.");
 
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-                var dateStr = next.DateTimeUtc.ToLongDateString() + " " + next.DateTimeUtc.ToShortTimeString();
+                if (cmd == "f1next")
+                {
+                    var next = InformationRepository.GetNextSession(Series.Formula1);
+                    var now = DateTime.UtcNow;
 
-                Output(next, dateStr + " UTC", next.DateTimeUtc - now, context);
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                    var dateStr = next.DateTimeUtc.ToLongDateString() + " " + next.DateTimeUtc.ToShortTimeString();
+
+                    Output(next, dateStr + " UTC", next.DateTimeUtc - now, context);
+                }
+                else
+                {
+                    throw new NotImplementedException("Time Zones are horrible.");
+                }
             }
-            else
+            catch (Exception err)
             {
-                throw new NotImplementedException("Time Zones are horrible.");
+                Logging.Log(err);
             }
         }
 
