@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GrandPrixs>
   <GrandPrix Name="Australian Grand Prix in Melbourne">
-    <Session Name="First Practice Session" Date="16/03/2014 01:30:00" />
-    <Session Name="Second Practice Session" Date="16/03/2014 05:30:00" />
-    <Session Name="Third Practice Session" Date="17/03/2014 03:00:00" />
-    <Session Name="Qualifying Session" Date="17/03/2014 06:00:00" />
-    <Session Name="Qualifying Session #2" Date="17/03/2014 00:00:00" />
-    <Session Name="Race" Date="18/03/2014 06:00:00" />
+    <Session Name="First Practice Session" Date="14/03/2014 01:30:00" />
+    <Session Name="Second Practice Session" Date="14/03/2014 05:30:00" />
+    <Session Name="Third Practice Session" Date="15/03/2014 03:00:00" />
+    <Session Name="Qualifying Session" Date="15/03/2014 06:00:00" />
+    <Session Name="Race" Date="16/03/2014 06:00:00" />
   </GrandPrix>
   <GrandPrix Name="Malaysian Grand Prix in Kuala Lumpur">
     <Session Name="First Practice Session" Date="22/03/2014 02:00:00" />
