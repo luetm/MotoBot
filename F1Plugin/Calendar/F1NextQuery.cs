@@ -1,14 +1,17 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Globalization;
+using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using MotoBotCore;
 using MotoBotCore.Classes;
 using MotoBotCore.Data;
 using MotoBotCore.Enums;
 using MotoBotCore.Interfaces;
 
-namespace MotoBotCore.Queries
+namespace F1Plugin.Calendar
 {
     [Export(typeof(IQuery))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
@@ -61,6 +64,7 @@ namespace MotoBotCore.Queries
         /// <param name="context"></param>
         public void Execute(string cmd, QueryContext context)
         {
+            File.WriteAllText("test.log", Directory.GetCurrentDirectory(), Encoding.UTF8);
             if (!CanExecute(cmd))
                 throw new InvalidOperationException("You cannot execute the query with this command. Check CanExecute() first.");
 
@@ -105,17 +109,22 @@ namespace MotoBotCore.Queries
             context.Bot.MessageChannel(context.Channel, "Next Session: {0} [{1}] in {2}".F(ConvertSessionName(session.Name), timeString, timeText));
         }
 
+        /// <summary>
+        /// Converts the long session of the session name to the short one (First Practice Session -> P1).
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private string ConvertSessionName(string name)
         {
-            if (name.StartsWith("Fi"))
+            if (name.StartsWith("F"))
                 return "P1";
-            else if (name.StartsWith("Se"))
+            if (name.StartsWith("S"))
                 return "P2";
-            else if (name.StartsWith("Th"))
+            if (name.StartsWith("T"))
                 return "P3";
-            else if (name.StartsWith("Qu"))
+            if (name.StartsWith("Q"))
                 return "Q";
-            else if (name.StartsWith("Ra"))
+            if (name.StartsWith("R"))
                 return "Race";
             throw new InvalidOperationException();
         }

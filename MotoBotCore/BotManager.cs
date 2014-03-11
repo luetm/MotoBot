@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition.Hosting;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MotoBotCore.Classes;
+﻿using MotoBotCore.Classes;
 using MotoBotCore.Interfaces;
 using MotoBotCore.Irc;
-using MotoBotCore.Queries;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition.Hosting;
+using System.IO;
+using System.Linq;
 
 namespace MotoBotCore
 {
@@ -66,8 +64,23 @@ namespace MotoBotCore
             Network = network;
             Bot = new Bot();
 
-            // Get queries from assemblies
+            // Prepare plugin path
+            var fi = new FileInfo(GetType().Assembly.Location);
             var catalog = new AggregateCatalog();
+
+            // Create plugin directory if it doesn't exist
+            if (fi.DirectoryName != null)
+            {
+                var pluginPath = new DirectoryInfo(Path.Combine(fi.DirectoryName, "Plugins"));
+
+                if (pluginPath.Exists)
+                {
+                    pluginPath.Create();
+                }
+                catalog.Catalogs.Add(new DirectoryCatalog(pluginPath.FullName));
+            }
+
+            // Get queries from assemblies
             catalog.Catalogs.Add(new AssemblyCatalog(GetType().Assembly));
 
             try

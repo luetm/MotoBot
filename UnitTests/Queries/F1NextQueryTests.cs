@@ -1,12 +1,12 @@
-﻿using System;
-using System.Text;
+﻿using F1Plugin.Calendar;
 using Moq;
 using MotoBotCore.Classes;
 using MotoBotCore.Data;
 using MotoBotCore.Enums;
 using MotoBotCore.Interfaces;
-using MotoBotCore.Queries;
 using NUnit.Framework;
+using System;
+using System.Text;
 
 namespace UnitTests.Queries
 {
@@ -66,7 +66,7 @@ namespace UnitTests.Queries
                     new Session
                     {
                         DateTimeUtc = DateTime.UtcNow.AddDays(1).AddHours(2).AddMinutes(3).AddSeconds(4),
-                        Name = "R",
+                        Name = "Race",
                         GrandPrix = new GrandPrix { Name = "Fantasy GP of Utopia", Number = 0 }
                     });
 
@@ -124,7 +124,7 @@ namespace UnitTests.Queries
                     new Session
                     {
                         DateTimeUtc = DateTime.UtcNow.AddDays(1),
-                        Name = "R",
+                        Name = "Race",
                         GrandPrix = new GrandPrix { Name = "Fantasy GP of Utopia", Number = 0 }
                     });
 

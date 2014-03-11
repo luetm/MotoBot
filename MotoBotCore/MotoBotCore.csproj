@@ -53,8 +53,8 @@
     <Compile Include="Classes\SystemMessageEventArgs.cs" />
     <Compile Include="Data\DefaultInformationRepository.cs" />
     <Compile Include="Data\GrandPrix.cs" />
+    <Compile Include="Data\Series.cs" />
     <Compile Include="Data\Session.cs" />
-    <Compile Include="Enums\Series.cs" />
     <Compile Include="Interfaces\IChannel.cs" />
     <Compile Include="Interfaces\IInformationRepository.cs" />
     <Compile Include="Classes\QueryContext.cs" />
@@ -69,7 +69,6 @@
     <Compile Include="Irc\Network.cs" />
     <Compile Include="Irc\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\F1NextQuery.cs" />
     <Compile Include="Queries\HelpQuery.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>
