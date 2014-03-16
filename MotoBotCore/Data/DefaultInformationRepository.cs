@@ -106,13 +106,13 @@ namespace MotoBotCore.Data
 
             // Get the next GP
             var nextGp = gps
-                .Where(x => x.Sessions.Any(y => y.DateTimeUtc >= DateTime.Now))
+                .Where(x => x.Sessions.Any(y => y.DateTimeUtc >= DateTime.UtcNow))
                 .OrderBy(x => x.Sessions.First().DateTimeUtc)
                 .First();
 
             // Get the next session.
              var session = nextGp.Sessions
-                .Where(x => x.DateTimeUtc >= DateTime.Now)
+                .Where(x => x.DateTimeUtc >= DateTime.UtcNow)
                 .OrderBy(x => x.DateTimeUtc)
                 .First();
 

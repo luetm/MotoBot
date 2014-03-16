@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Runtime.Remoting.Channels;
+using System.Windows;
+using System.Windows.Documents;
 using MotoBotCore;
 using MotoBotCore.Irc;
 
@@ -58,6 +61,11 @@ namespace MotoBot
         private void JoinButton_Click(object sender, RoutedEventArgs e)
         {
             _botManager.Bot.Join(ChannelBox.Text);
+        }
+
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            _botManager.Bot.SendCommand(CommandBox.Text);
         }
     }
 }

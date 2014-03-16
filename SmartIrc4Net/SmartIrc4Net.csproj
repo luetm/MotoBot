@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0BFF9716-E523-49F5-8FAD-A5D135AB9C71}</ProjectGuid>
+    <ProjectGuid>{15558565-5D3C-496E-863A-E3438EC7EED2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MotoBotCore</RootNamespace>
-    <AssemblyName>MotoBotCore</AssemblyName>
+    <RootNamespace>SmartIrc4Net</RootNamespace>
+    <AssemblyName>SmartIrc4Net</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,13 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,41 +39,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BotManager.cs" />
-    <Compile Include="Classes\ErrorEventArgs.cs" />
-    <Compile Include="Classes\MessageEventArgs.cs" />
-    <Compile Include="Classes\SystemMessageEventArgs.cs" />
-    <Compile Include="Data\DefaultInformationRepository.cs" />
-    <Compile Include="Data\GrandPrix.cs" />
-    <Compile Include="Data\Series.cs" />
-    <Compile Include="Data\Session.cs" />
-    <Compile Include="Helpers\Logging.cs" />
-    <Compile Include="Interfaces\IChannel.cs" />
-    <Compile Include="Interfaces\IInformationRepository.cs" />
-    <Compile Include="Classes\QueryContext.cs" />
-    <Compile Include="Enums\QueryPrivilegeLevel.cs" />
-    <Compile Include="Enums\UserMode.cs" />
-    <Compile Include="Interfaces\IBot.cs" />
-    <Compile Include="Interfaces\INetwork.cs" />
-    <Compile Include="Interfaces\IQuery.cs" />
-    <Compile Include="Interfaces\IUser.cs" />
-    <Compile Include="Irc\Bot.cs" />
-    <Compile Include="Irc\Channel.cs" />
-    <Compile Include="Irc\Network.cs" />
-    <Compile Include="Irc\User.cs" />
+    <Compile Include="Consts.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="IrcClient\BanInfo.cs" />
+    <Compile Include="IrcClient\Channel.cs" />
+    <Compile Include="IrcClient\ChannelInfo.cs" />
+    <Compile Include="IrcClient\ChannelUser.cs" />
+    <Compile Include="IrcClient\Delegates.cs" />
+    <Compile Include="IrcClient\EventArgs.cs" />
+    <Compile Include="IrcClient\IrcClient.cs" />
+    <Compile Include="IrcClient\IrcMessageData.cs" />
+    <Compile Include="IrcClient\IrcUser.cs" />
+    <Compile Include="IrcClient\NonRfcChannel.cs" />
+    <Compile Include="IrcClient\NonRfcChannelUser.cs" />
+    <Compile Include="IrcClient\WhoInfo.cs" />
+    <Compile Include="IrcCommands\IrcCommands.cs" />
+    <Compile Include="IrcCommands\Rfc2812.cs" />
+    <Compile Include="IrcConnection\Delegates.cs" />
+    <Compile Include="IrcConnection\EventArgs.cs" />
+    <Compile Include="IrcConnection\IrcConnection.cs" />
+    <Compile Include="IrcConnection\IrcProperties.cs" />
+    <Compile Include="IrcConnection\IrcTcpClient.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\HelpQuery.cs" />
-    <Compile Include="StringExtensions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SmartIrc4Net\SmartIrc4Net.csproj">
-      <Project>{15558565-5d3c-496e-863a-e3438ec7eed2}</Project>
-      <Name>SmartIrc4Net</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

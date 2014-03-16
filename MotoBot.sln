@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F1Plugin", "F1Plugin\F1Plugin.csproj", "{04F742CB-35C6-4BB1-81FD-C66B14D47A15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartIrc4Net", "SmartIrc4Net\SmartIrc4Net.csproj", "{15558565-5D3C-496E-863A-E3438EC7EED2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{637C116B-DADA-4751-B86F-E760F7E2E7C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{BE070E67-D0DC-4A6C-8F7D-78B7FDBB390D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{8E760A06-4C7A-479E-AB91-6BEBE9C52011}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +41,17 @@ Global
 		{04F742CB-35C6-4BB1-81FD-C66B14D47A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04F742CB-35C6-4BB1-81FD-C66B14D47A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04F742CB-35C6-4BB1-81FD-C66B14D47A15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15558565-5D3C-496E-863A-E3438EC7EED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15558565-5D3C-496E-863A-E3438EC7EED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15558565-5D3C-496E-863A-E3438EC7EED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15558565-5D3C-496E-863A-E3438EC7EED2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{15558565-5D3C-496E-863A-E3438EC7EED2} = {637C116B-DADA-4751-B86F-E760F7E2E7C4}
+		{04F742CB-35C6-4BB1-81FD-C66B14D47A15} = {BE070E67-D0DC-4A6C-8F7D-78B7FDBB390D}
+		{13E83AD0-5AB4-4100-AEDF-EAF80BD4E228} = {8E760A06-4C7A-479E-AB91-6BEBE9C52011}
 	EndGlobalSection
 EndGlobal

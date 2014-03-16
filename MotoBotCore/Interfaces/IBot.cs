@@ -17,6 +17,8 @@ namespace MotoBotCore.Interfaces
         void Join(string channel);
         void Part(string channel);
 
+        void SendCommand(string command);
+
         void MessageUser(IUser user, string text);
         void MessageChannel(IChannel channel, string text);
 

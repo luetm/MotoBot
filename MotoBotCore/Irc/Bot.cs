@@ -1,13 +1,16 @@
-﻿using System;
+﻿using Meebey.SmartIrc4net;
+using MotoBotCore.Classes;
+using MotoBotCore.Enums;
+using MotoBotCore.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading;
-using IrcDotNet;
-using MotoBotCore.Classes;
-using MotoBotCore.Enums;
-using MotoBotCore.Interfaces;
+using System.Threading.Tasks;
+using ErrorEventArgs = MotoBotCore.Classes.ErrorEventArgs;
 
 namespace MotoBotCore.Irc
 {
@@ -17,7 +20,19 @@ namespace MotoBotCore.Irc
         #region Public Properties
 
         public IrcClient Client { get; private set; }
-        public List<IChannel> Channels { get; private set; }
+
+        public List<IChannel> Channels
+        {
+            get
+            {
+                return Client.JoinedChannels
+                    .Cast<string>()
+                    .Select(x => new Channel("", x))
+                    .Cast<IChannel>()
+                    .ToList();
+            }
+        }
+
         public INetwork Network { get; set; }
 
         public bool IsConnected
@@ -29,7 +44,7 @@ namespace MotoBotCore.Irc
 
         #region Private Fields
 
-        
+
 
         #endregion
 
@@ -52,36 +67,36 @@ namespace MotoBotCore.Irc
         public void Connect(INetwork network)
         {
             // Create client
-            Client = new IrcClient();
+            Client = new IrcClient
+            {
+                Encoding = Encoding.UTF8,
+                SendDelay = 200,
+                ActiveChannelSyncing = true,
+            };
+
             Network = network;
 
-            // Hook up to events
-            Client.ChannelListReceived += OnChannelListReceived;
-            Client.ClientInfoReceived += OnClientInfoReceived;
-            Client.Connected += OnConnected;
-            Client.ConnectFailed += OnError;
-            Client.Disconnected += OnDisconnected;
-            Client.Error += OnError;
-            Client.ErrorMessageReceived += OnErrorMessage;
-            Client.MotdReceived += OnMotd; // << USED AS *CONNECTED* FOR NOW
-            Client.NetworkInformationReceived += NetworkInformationReceived;
-            Client.ProtocolError += OnProtoclError;
-            Client.RawMessageReceived += OnMessage;
-            Client.Registered += OnRegistered;
-            Client.ServerBounce += OnServerBounce;
 
-            // Connect
-            var registration = new IrcUserRegistrationInfo
-            {
-                NickName = network.Nickname,
-                Password = "none",
-                RealName = network.Nickname,
-                UserName = network.Nickname,
-            };
-            Client.Connect(network.Address, network.Port, false, registration);
+            // Hook up to events
+            Client.OnList += OnChannelListReceived;
+            Client.OnConnected += OnConnected;
+            Client.OnConnectionError += OnError;
+            Client.OnDisconnected += OnDisconnected;
+            Client.OnError += OnError;
+            Client.OnErrorMessage += OnErrorMessage;
+            Client.OnMotd += OnMotd; // << USED AS *CONNECTED* FOR NOW
+            Client.OnChannelMessage += OnChannelMessage;
+            Client.OnQueryMessage += OnQueryMessage;
+
+
+            Client.OnRawMessage += OnRawMessage;
+            Client.OnRegistered += OnRegistered;
+
+            Client.Connect(network.Address, network.Port);
+            Task.Run(() => Client.Listen());
         }
 
-       /// <summary>
+        /// <summary>
         /// See interface.
         /// </summary>
         /// <param name="message"></param>
@@ -98,7 +113,7 @@ namespace MotoBotCore.Irc
         /// <param name="channel">Channel name with #.</param>
         public void Join(string channel)
         {
-            Client.SendRawMessage("join {0}".F(channel));
+            Client.RfcJoin(channel);
         }
 
         /// <summary>
@@ -107,7 +122,7 @@ namespace MotoBotCore.Irc
         /// <param name="channel"></param>
         public void Part(string channel)
         {
-            Client.SendRawMessage("part {0}".F(channel));
+            Client.RfcPart(channel);
         }
 
         /// <summary>
@@ -122,18 +137,16 @@ namespace MotoBotCore.Irc
                 throw new InvalidOperationException("Not connected.");
 
             // Get irc user from irc client
-            var ircUser = Client.Channels
-                .SelectMany(c => c.Users)
-                .FirstOrDefault(u => u.User.NickName == user.Name);
+            var ircUser = Client.GetIrcUser(user.Name);
 
             // Check if found
             if (ircUser == null)
                 throw new InvalidOperationException("User {0} not found.".F(user.Name));
 
             // Message
-            foreach (var line in text.Split(new [] {'\n'}, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var line in text.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                Client.LocalUser.SendMessage(ircUser.User, line);
+                Client.SendMessage(SendType.Message, ircUser.Nick, line);
             }
         }
 
@@ -149,15 +162,14 @@ namespace MotoBotCore.Irc
                 throw new InvalidOperationException("Not connected.");
 
             // Get irc user from irc client
-            var ircChannel = Client.Channels
-                .FirstOrDefault(c => c.Name == channel.Name);
+            var ircChannel = Client.GetChannel(channel.Name);
 
             // Check if found
             if (ircChannel == null)
                 throw new InvalidOperationException("Channel {0} not found.".F(channel.Name));
 
             // Message
-            Client.LocalUser.SendMessage(ircChannel, text);
+            Client.SendMessage(SendType.Message, ircChannel.Name, text);
         }
 
 
@@ -170,7 +182,7 @@ namespace MotoBotCore.Irc
         /// <param name="eventArgs"></param>
         private void OnConnected(object sender, EventArgs eventArgs)
         {
-            
+            Client.Login(new[] { Network.Nickname, Network.NicknameAlt }, "MotoBot");
         }
 
         /// <summary>
@@ -180,7 +192,7 @@ namespace MotoBotCore.Irc
         /// <param name="e"></param>
         private void OnDisconnected(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -188,7 +200,7 @@ namespace MotoBotCore.Irc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnError(object sender, IrcErrorEventArgs e)
+        private void OnError(object sender, EventArgs e)
         {
             Debugger.Break();
         }
@@ -198,7 +210,7 @@ namespace MotoBotCore.Irc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnErrorMessage(object sender, IrcErrorMessageEventArgs e)
+        private void OnErrorMessage(object sender, IrcEventArgs e)
         {
             Debugger.Break();
         }
@@ -208,22 +220,11 @@ namespace MotoBotCore.Irc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnChannelListReceived(object sender, IrcChannelListReceivedEventArgs e)
+        private void OnChannelListReceived(object sender, ListEventArgs e)
         {
-            Channels = e.Channels
-                .Select(c => new Channel(c.Topic, c.Name) as IChannel)
-                .ToList();
+
         }
 
-        /// <summary>
-        /// Run when client info was received.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnClientInfoReceived(object sender, EventArgs e)
-        {
-            
-        }
 
         /// <summary>
         /// On modt ACTS AS CONNECTED.
@@ -243,30 +244,10 @@ namespace MotoBotCore.Irc
             {
                 foreach (var cmd in Network.OnConnectCommands)
                 {
-                    Client.SendRawMessage(cmd);
+                    Client.WriteLine(cmd);
                     Thread.Sleep(500);
                 }
             }
-        }
-
-        /// <summary>
-        /// Run when network info was received.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NetworkInformationReceived(object sender, EventArgs e)
-        {
-            
-        }
-
-        /// <summary>
-        /// Run when a protocol error occured.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnProtoclError(object sender, IrcProtocolErrorEventArgs e)
-        {
-            Debugger.Break();
         }
 
         /// <summary>
@@ -274,46 +255,34 @@ namespace MotoBotCore.Irc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMessage(object sender, IrcRawMessageEventArgs e)
+        private void OnRawMessage(object sender, IrcEventArgs e)
         {
-            // On message by a user
-            if (e.Message.Command == "PRIVMSG")
+            if (SystemMessageReceived != null)
             {
-                if (e.Message.Source is IrcUser)
-                {
-                    // If in channel
-                    if (e.Message.Parameters[0].StartsWith("#"))
-                    {
-                        var user = new User(e.Message.Source.Name, UserMode.None);
-                        var channel = new Channel("", e.Message.Parameters[0]);
-                        var context = new QueryContext(this, user, channel, false);
-
-                        if (MessageReceived != null)
-                        {
-                            MessageReceived(this, new MessageEventArgs(context, e.Message.Parameters[1]));
-                        }
-                    }
-
-                    // If in PM
-                    else
-                    {
-                        var user = new User(e.Message.Source.Name, UserMode.None);
-                        var context = new QueryContext(this, user, null, true);
-
-                        if (MessageReceived != null)
-                        {
-                            MessageReceived(this, new MessageEventArgs(context, e.Message.Parameters[1]));
-                        }
-                    }
-                }
+                SystemMessageReceived(this, new SystemMessageEventArgs(e.Data.RawMessage));
             }
-            // On system message
-            else
+        }
+
+        private void OnChannelMessage(object sender, IrcEventArgs e)
+        {
+            var user = new User(e.Data.From, UserMode.None);
+            var channel = new Channel("", e.Data.Channel);
+            var context = new QueryContext(this, user, channel, false);
+
+            if (MessageReceived != null)
             {
-                if (SystemMessageReceived != null)
-                {
-                    SystemMessageReceived(this, new SystemMessageEventArgs(e.RawContent));
-                }
+                MessageReceived(this, new MessageEventArgs(context, e.Data.Message));
+            }
+        }
+
+        private void OnQueryMessage(object sender, IrcEventArgs e)
+        {
+            var user = new User(e.Data.From, UserMode.None);
+            var context = new QueryContext(this, user, null, true);
+
+            if (MessageReceived != null)
+            {
+                MessageReceived(this, new MessageEventArgs(context, e.Data.Message));
             }
         }
 
@@ -324,17 +293,12 @@ namespace MotoBotCore.Irc
         /// <param name="e"></param>
         private void OnRegistered(object sender, EventArgs e)
         {
-            
+
         }
 
-        /// <summary>
-        /// Run when the server sent a bounce message.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnServerBounce(object sender, IrcServerInfoEventArgs e)
+        public void SendCommand(string message)
         {
-            
+            Client.WriteLine(message);
         }
 
         #endregion
